@@ -1,0 +1,1 @@
+ALTER TABLE public.site_types ADD COLUMN IF NOT EXISTS image_path text;

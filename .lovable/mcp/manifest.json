@@ -1,0 +1,143 @@
+{
+  "version": 1,
+  "sdk_version": "0.20.0",
+  "path": "/functions/v1/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://xavsdfewzwdonndfcehh.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
+  },
+  "mcp": {
+    "server": {
+      "name": "trailblazer-pms-mcp",
+      "version": "0.1.0",
+      "title": "Trailblazer PMS"
+    },
+    "tools": [
+      {
+        "name": "list_properties",
+        "title": "List properties",
+        "description": "List properties the signed-in user has access to.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_reservations",
+        "title": "List reservations",
+        "description": "List reservations for a property, optionally filtered by arrival date range and status. Enforces property_id isolation.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "property_id": {
+              "type": "string",
+              "format": "uuid",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$",
+              "description": "Property UUID (required for tenant isolation)."
+            },
+            "from": {
+              "description": "Arrival on or after this ISO date (YYYY-MM-DD).",
+              "type": "string"
+            },
+            "to": {
+              "description": "Arrival on or before this ISO date (YYYY-MM-DD).",
+              "type": "string"
+            },
+            "status": {
+              "description": "Reservation status filter (e.g. confirmed, checked_in).",
+              "type": "string"
+            },
+            "limit": {
+              "default": 50,
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 200
+            }
+          },
+          "required": [
+            "property_id"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "get_reservation",
+        "title": "Get reservation",
+        "description": "Fetch a single reservation by id. RLS ensures only accessible properties are returned.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "reservation_id": {
+              "type": "string",
+              "format": "uuid",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+            }
+          },
+          "required": [
+            "reservation_id"
+          ]
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "search_guests",
+        "title": "Search guests",
+        "description": "Search guest profiles by name or email within a property.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {
+            "property_id": {
+              "type": "string",
+              "format": "uuid",
+              "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+            },
+            "query": {
+              "type": "string",
+              "minLength": 1,
+              "description": "Name or email fragment."
+            },
+            "limit": {
+              "default": 20,
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50
+            }
+          },
+          "required": [
+            "property_id",
+            "query"
+          ]
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}

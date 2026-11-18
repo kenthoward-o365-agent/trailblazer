@@ -1,0 +1,65 @@
+// Common countries at top, then alphabetical
+export const COUNTRIES = [
+  // Most common first
+  { code: 'US', name: 'United States' },
+  { code: 'CA', name: 'Canada' },
+  { code: 'MX', name: 'Mexico' },
+  { code: 'GB', name: 'United Kingdom' },
+  // Then alphabetical
+  { code: 'AR', name: 'Argentina' },
+  { code: 'AU', name: 'Australia' },
+  { code: 'AT', name: 'Austria' },
+  { code: 'BE', name: 'Belgium' },
+  { code: 'BR', name: 'Brazil' },
+  { code: 'CL', name: 'Chile' },
+  { code: 'CN', name: 'China' },
+  { code: 'CO', name: 'Colombia' },
+  { code: 'CR', name: 'Costa Rica' },
+  { code: 'CZ', name: 'Czech Republic' },
+  { code: 'DK', name: 'Denmark' },
+  { code: 'DO', name: 'Dominican Republic' },
+  { code: 'EC', name: 'Ecuador' },
+  { code: 'FI', name: 'Finland' },
+  { code: 'FR', name: 'France' },
+  { code: 'DE', name: 'Germany' },
+  { code: 'GR', name: 'Greece' },
+  { code: 'HK', name: 'Hong Kong' },
+  { code: 'IN', name: 'India' },
+  { code: 'ID', name: 'Indonesia' },
+  { code: 'IE', name: 'Ireland' },
+  { code: 'IL', name: 'Israel' },
+  { code: 'IT', name: 'Italy' },
+  { code: 'JM', name: 'Jamaica' },
+  { code: 'JP', name: 'Japan' },
+  { code: 'KR', name: 'South Korea' },
+  { code: 'MY', name: 'Malaysia' },
+  { code: 'NL', name: 'Netherlands' },
+  { code: 'NZ', name: 'New Zealand' },
+  { code: 'NO', name: 'Norway' },
+  { code: 'PA', name: 'Panama' },
+  { code: 'PE', name: 'Peru' },
+  { code: 'PH', name: 'Philippines' },
+  { code: 'PL', name: 'Poland' },
+  { code: 'PT', name: 'Portugal' },
+  { code: 'PR', name: 'Puerto Rico' },
+  { code: 'RU', name: 'Russia' },
+  { code: 'SA', name: 'Saudi Arabia' },
+  { code: 'SG', name: 'Singapore' },
+  { code: 'ZA', name: 'South Africa' },
+  { code: 'ES', name: 'Spain' },
+  { code: 'SE', name: 'Sweden' },
+  { code: 'CH', name: 'Switzerland' },
+  { code: 'TW', name: 'Taiwan' },
+  { code: 'TH', name: 'Thailand' },
+  { code: 'TR', name: 'Turkey' },
+  { code: 'AE', name: 'United Arab Emirates' },
+  { code: 'VE', name: 'Venezuela' },
+  { code: 'VN', name: 'Vietnam' },
+] as const;
+
+export type CountryCode = typeof COUNTRIES[number]['code'];
+
+export const getCountryName = (code: string): string => {
+  const country = COUNTRIES.find(c => c.code === code);
+  return country?.name || code;
+};

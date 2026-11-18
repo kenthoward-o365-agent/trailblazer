@@ -1,0 +1,72 @@
+project_id = "xavsdfewzwdonndfcehh"
+
+[functions.get-recommendations]
+verify_jwt = false
+
+[functions.ota-api]
+verify_jwt = false
+
+[functions.pos-api]
+verify_jwt = false
+
+[functions.process-campaigns]
+verify_jwt = false
+
+[functions.payment-config]
+verify_jwt = false
+
+[functions.process-payment]
+verify_jwt = true
+
+[functions.adyen-session]
+verify_jwt = true
+
+[functions.adyen-webhook]
+verify_jwt = false
+
+[functions.send-statement]
+verify_jwt = false
+
+[functions.send-folio-email]
+verify_jwt = true
+
+[functions.auto-dayend-close]
+verify_jwt = false
+
+[functions.pci-retention-sweep]
+verify_jwt = false
+
+[functions.booking-engine-public]
+verify_jwt = false
+
+[functions.quickbooks-oauth]
+verify_jwt = false
+
+[functions.channel-ari-push]
+verify_jwt = false
+
+[functions.channel-reservations-pull]
+verify_jwt = false
+
+[functions.membership-verify]
+verify_jwt = false
+
+[functions.membership-dues-run]
+verify_jwt = false
+
+[functions.rate-template-push]
+verify_jwt = true
+
+[functions.portfolio-metrics-refresh]
+verify_jwt = false
+
+[functions.executive-report-run]
+verify_jwt = false
+
+[functions.warehouse-export]
+verify_jwt = true
+
+
+
+
+

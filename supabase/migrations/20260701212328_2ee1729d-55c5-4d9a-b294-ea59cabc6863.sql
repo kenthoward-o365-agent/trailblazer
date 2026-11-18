@@ -1,0 +1,1 @@
+GRANT EXECUTE ON FUNCTION public.generate_booking_public_slug() TO authenticated;

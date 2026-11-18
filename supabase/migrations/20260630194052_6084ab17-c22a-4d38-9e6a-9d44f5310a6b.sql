@@ -1,0 +1,1 @@
+UPDATE public.properties SET audit_date = (now() AT TIME ZONE COALESCE(timezone, 'America/New_York'))::date WHERE audit_date IS NULL OR audit_date < (now() AT TIME ZONE COALESCE(timezone, 'America/New_York'))::date;

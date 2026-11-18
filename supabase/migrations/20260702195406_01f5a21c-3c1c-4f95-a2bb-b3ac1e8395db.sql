@@ -1,0 +1,2 @@
+ALTER TABLE public.guests DROP CONSTRAINT IF EXISTS guests_email_key;
+CREATE UNIQUE INDEX IF NOT EXISTS guests_org_email_unique ON public.guests (organization_id, lower(email)) WHERE email IS NOT NULL AND organization_id IS NOT NULL;

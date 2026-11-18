@@ -1,0 +1,1 @@
+ALTER TABLE public.rates ADD COLUMN IF NOT EXISTS show_on_booking_engine boolean NOT NULL DEFAULT false;
